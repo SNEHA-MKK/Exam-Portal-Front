@@ -1,0 +1,18 @@
+/* src/App.css */
+@keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .wave {
+    position: relative;
+    width: 200%;
+    height: 100px;
+    background: url('path_to_wave_image') repeat-x;
+    animation: wave 10s linear infinite;
+  }
+  
