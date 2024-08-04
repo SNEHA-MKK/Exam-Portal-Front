@@ -4,7 +4,7 @@ import AdminHeader from "../../../components/AdminHeader";
 // import { useParams } from "react-router-dom";
 import AddQuizzes from "../../../components/AddQuizzes";
 import { Link, useParams } from "react-router-dom";
-import { getAllAdmQuiz } from "../../../services/allAPI";
+import { getAllAdmCategory, getAllAdmQuiz } from "../../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,6 +14,8 @@ const AdminQuizzesPage = () => {
 
 
     const [adminQuiz, setAdminQuiz] = useState([])
+    const [adminCategory, setAdminCategory] = useState([])
+
 
     const { id } = useParams();
     console.log(id);
@@ -36,8 +38,29 @@ const AdminQuizzesPage = () => {
 
     }
 
+    
+
+  const getAllCategory = async () => {
+
+    if (sessionStorage.getItem("token")) {
+      const token = sessionStorage.getItem("token")
+
+      const reqHeader = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+
+      const result = await getAllAdmCategory(reqHeader)
+      console.log(result.data);
+      setAdminCategory(result.data)
+
+    }
+
+  }
+
     useEffect(() => {
         getAllQuizzez(id)
+        getAllCategory()
     }, [])
 
 
@@ -49,7 +72,7 @@ const AdminQuizzesPage = () => {
                 <Col md={12}>
 
 
-                    <AddQuizzes id={id} />
+                    <AddQuizzes adminCategory={adminCategory} id={id} />
 
                     {adminQuiz?.length > 0 ?
 

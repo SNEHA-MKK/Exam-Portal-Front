@@ -8,7 +8,7 @@ import FormContainer from './FormContainer';
 import { addAdmQuizApi } from '../services/allAPI';
 
 
-function AddQuizzes({ id }) {
+function AddQuizzes({ id,adminCategory }) {
 
     // console.log("Quiz ID:", id);
     
@@ -167,8 +167,11 @@ function AddQuizzes({ id }) {
                                     onChange={handleChange}
                                 >
                                     <option value="">Choose Category</option>
-                                    <option value="category1">Category 1</option>
-                                    <option value="category2">Category 2</option>
+                                    { adminCategory?.map((item)=>(
+                                         <option value={item.title}>{item.title}</option>
+                                    ))
+                                        }
+                                    {/* <option value="category2">Category 2</option> */}
                                     {/* Add more categories as needed */}
                                 </Form.Select>
                             </div>

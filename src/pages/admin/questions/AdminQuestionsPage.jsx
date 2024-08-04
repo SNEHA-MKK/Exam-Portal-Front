@@ -4,12 +4,37 @@ import { Button, Container, Row, Col, Nav, Image, InputGroup } from "react-boots
 import Question from "../../../components/Questions";
 import AddQue from "../../../components/AddQue";
 import { useParams } from "react-router-dom";
+import { getAllAdmQuestion } from "../../../services/allAPI";
 
 
 const AdminQuestionsPage = () => {
 
+    const [adminQuest, setAdminQuest] = useState([])
+
     const { id } = useParams();
     console.log(id);
+
+    const getAllQuestions = async (id) => {
+
+        if (sessionStorage.getItem("token")) {
+            const token = sessionStorage.getItem("token")
+
+            const reqHeader = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+
+            const result = await getAllAdmQuestion(id, reqHeader)
+            console.log(result.data);
+            setAdminQuest(result.data)
+
+        }
+
+    }
+
+    useEffect(() => {
+        getAllQuestions(id)
+    }, [])
 
 
     return (
@@ -22,9 +47,12 @@ const AdminQuestionsPage = () => {
 
                         <AddQue id={id} />
 
-                        <Row>
+                        {adminQuest?.length >0 ?
+
+                           adminQuest?.map((item)=>(
+                            <Row className="mb-2">
                             <Col xs={12} className="mb-2">
-                                <h5>9 . bjhbhbhbh</h5>
+                                <h5>{item.question}</h5>
                             </Col>
                             <Col xs={12}>
                                 <InputGroup
@@ -32,27 +60,27 @@ const AdminQuestionsPage = () => {
                                 >
                                     <Row className="w-100">
                                         <Col xs={12} md={6} className="d-flex mb-2">
-                                            <InputGroup.Radio value={"option1"} aria-label="option 1" />
-                                            <span className="ms-2">lorem</span>
+                                            <InputGroup.Radio value={item.option1} aria-label="option 1" />
+                                            <span className="ms-2">{item.option1}</span>
                                         </Col>
                                         <Col xs={12} md={6} className="d-flex mb-2">
-                                            <InputGroup.Radio value={"option2"} aria-label="option 2" />
-                                            <span className="ms-2">epsum</span>
+                                            <InputGroup.Radio value={item.option2} aria-label="option 2" />
+                                            <span className="ms-2">{item.option2}</span>
                                         </Col>
                                         <Col xs={12} md={6} className="d-flex mb-2">
-                                            <InputGroup.Radio value={"option3"} aria-label="option 3" />
-                                            <span className="ms-2">jvhk</span>
+                                            <InputGroup.Radio value={item.option3} aria-label="option 3" />
+                                            <span className="ms-2">{item.option3}</span>
                                         </Col>
                                         <Col xs={12} md={6} className="d-flex mb-2">
-                                            <InputGroup.Radio value={"option4"} aria-label="option 4" />
-                                            <span className="ms-2">kjhbvhf</span>
+                                            <InputGroup.Radio value={item.option4} aria-label="option 4" />
+                                            <span className="ms-2">{item.option4}</span>
                                         </Col>
                                     </Row>
                                 </InputGroup>
                             </Col>
 
                             <Col xs={12}>
-                                <p className="my-2">Correct Answer: hvn</p>
+                                <p className="my-2">Correct Answer: {item.answer}</p>
                                 <hr />
                                 <div className="d-flex justify-content-between">
                                     <Button
@@ -69,8 +97,11 @@ const AdminQuestionsPage = () => {
                             </Col>
 
                         </Row>
+                           ))                           
 
-                        <h2 className="text-danger text-center mt-5 mb-4">No questions are present. Try adding some questions.</h2>
+                           
+                          :
+                        <h2 className="text-danger text-center mt-5 mb-4">No questions are present. Try adding some questions.</h2>}
 
 
                     </Container>

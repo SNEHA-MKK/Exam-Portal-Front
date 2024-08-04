@@ -57,4 +57,20 @@ export const getAllAdmQuiz = async(id,reqHeader)=>{
 export const addQueApi  = async(reqbody,reqHeader,id)=>{
      return await commonAPI('POST',`${serverUrl}/admin-question/${id}`,reqbody,reqHeader)
  }
+
+  //get all questions - admin
+export const getAllAdmQuestion = async(id,reqHeader)=>{
+     return await commonAPI('GET',`${serverUrl}/admin-getquestion/${id}`,"",reqHeader)
+ }
+
+  //get all quizzes - user
+export const getAllUserQuiz = async(reqHeader)=>{
+     return await commonAPI('GET',`${serverUrl}/user-getquiz`,"",reqHeader)
+ }
+
+ 
+  //get all questions - user
+export const getAllUserQuestions = async(id,reqHeader)=>{
+     return await commonAPI('GET',`${serverUrl}/user-getquestion/${id}`,"",reqHeader)
+ }
  
