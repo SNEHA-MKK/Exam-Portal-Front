@@ -74,3 +74,18 @@ export const getAllUserQuestions = async(id,reqHeader)=>{
      return await commonAPI('GET',`${serverUrl}/user-getquestion/${id}`,"",reqHeader)
  }
  
+ //evaluation
+
+ export const evaluateUserAnswers = async(id, userAnswers,reqHeader) => {
+     return await commonAPI('POST',`${serverUrl}/evaluate-answers/${id}`,{userAnswers},reqHeader)
+ }
+
+//get user results
+export const getUserResults = async(reqHeader)=>{
+     return await commonAPI('GET',`${serverUrl}/user-results`,"",reqHeader)
+ }
+
+ //get ADMIN results
+export const getAdminResults = async(reqHeader)=>{
+     return await commonAPI('GET',`${serverUrl}/admin-results`,"",reqHeader)
+ }

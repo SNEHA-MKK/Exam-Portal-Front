@@ -20,6 +20,7 @@ import UserQuizzesPage from './pages/users/UserQuizzesPage'
 import UserQuizManualPage from './pages/users/UserQuizManualPage'
 import UserQuestionsPage from './pages/users/UserQuestionsPage'
 import UserQuizResultPage from './pages/users/UserQuizResultPage'
+import ResultAdmin from './pages/admin/ResultAdmin'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/adminProfile' element={<AdminProfilePage />} />
+        <Route path="/adminQuizResults" element={<ResultAdmin/>} />
 
         {/* adminCategory */}
 
@@ -63,7 +65,7 @@ function App() {
         <Route path="/quizzes" element={<UserQuizzesPage />} />
         <Route path="/quizManual/" element={<UserQuizManualPage />} />
         <Route path="/questions/:id" element={<UserQuestionsPage />} />
-        <Route path="/quizResults/" element={<UserQuizResultPage />} />
+        <Route path="/quizResults" element={<UserQuizResultPage />} />
 
 
       </Routes>

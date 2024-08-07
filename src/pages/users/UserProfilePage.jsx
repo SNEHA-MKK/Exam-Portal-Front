@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Container, Row, Col, Image, Nav } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 function UserProfilePage() {
     return (
@@ -17,6 +18,7 @@ function UserProfilePage() {
                         />
                         <h3 className="text-light">WELCOME</h3>
                         <h6 className="text-light">Sneha Mohandas</h6>
+                        <Link to={'/quizResults'} >Results</Link>
                         <Nav className="flex-column w-100 mt-5">
                             <Nav.Link href="#" className="text-light text-center mb-3">Dashboard</Nav.Link>
                             <Nav.Link href="#" className="text-light text-center mb-3">Exams</Nav.Link>
