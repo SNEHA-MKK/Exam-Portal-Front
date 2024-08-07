@@ -87,7 +87,7 @@ function AddQuizzes({ id,adminCategory }) {
         <>
             <Button
                 onClick={handleShow}
-                variant="success"
+                variant="danger"
                 className="d-block mx-auto my-4"
             >
                 Add Quiz

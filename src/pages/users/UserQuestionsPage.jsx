@@ -166,14 +166,19 @@ function UserQuestionsPage() {
     const handleSubmit = async () => {
         const token = sessionStorage.getItem('token');
 
-            const reqHeader = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            };
+        const reqHeader = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        };
 
         try {
-            const result = await evaluateUserAnswers(id, userAnswers,reqHeader);
-            setResult(result.data);
+            const result = await evaluateUserAnswers(id, userAnswers, reqHeader);
+            if (result.status == 200) {
+                setResult(result.data);
+            } else {
+                alert('user can only attend one time')
+            }
+
         } catch (error) {
             console.error('Error evaluating answers:', error);
         }
@@ -252,7 +257,7 @@ function UserQuestionsPage() {
                                     </InputGroup> */}
                                 </Col>
                                 <hr />
-                                
+
                             </Row>
                         ))}
                     </Col>

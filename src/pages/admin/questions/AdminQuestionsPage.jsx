@@ -5,6 +5,9 @@ import Question from "../../../components/Questions";
 import AddQue from "../../../components/AddQue";
 import { useParams } from "react-router-dom";
 import { getAllAdmQuestion } from "../../../services/allAPI";
+import AdminHeader from "../../../components/AdminHeader";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 const AdminQuestionsPage = () => {
@@ -39,20 +42,21 @@ const AdminQuestionsPage = () => {
 
     return (
         <Container fluid>
+            <AdminHeader/>
             <Row>
 
                 <Col md={12}>
                     <Container className="mt-4">
-                        <h2>Questions : kjhewfh</h2>
+                        {/* <h2>Questions : kjhewfh</h2> */}
 
                         <AddQue id={id} />
 
                         {adminQuest?.length >0 ?
 
-                           adminQuest?.map((item)=>(
-                            <Row className="mb-2">
+                           adminQuest?.map((item,index)=>(
+                            <Row className="mb-4">
                             <Col xs={12} className="mb-2">
-                                <h5>{item.question}</h5>
+                                <h5>{index+1}.  {item.question}</h5>
                             </Col>
                             <Col xs={12}>
                                 <InputGroup
@@ -80,7 +84,7 @@ const AdminQuestionsPage = () => {
                             </Col>
 
                             <Col xs={12}>
-                                <p className="my-2">Correct Answer: {item.answer}</p>
+                                <h5 className="my-2 text-danger">Correct Answer: {item.answer}</h5>
                                 <hr />
                                 <div className="d-flex justify-content-between">
                                     <Button
@@ -88,10 +92,10 @@ const AdminQuestionsPage = () => {
 
                                         className="me-2"
                                     >
-                                        Update
+                                       <FontAwesomeIcon icon={faPen} />
                                     </Button>
                                     <Button variant="outline-danger">
-                                        Delete
+                                    <FontAwesomeIcon icon={faTrash} className='text-danger' />
                                     </Button>
                                 </div>
                             </Col>

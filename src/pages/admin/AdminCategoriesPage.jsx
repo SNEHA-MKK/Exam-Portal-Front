@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, ListGroup, Container, Row, Col, Nav, Image, Form } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 import AdminUpdateCategoryPage from "./AdminUpdateCategoryPage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +9,7 @@ import AddCat from "../../components/AddCat";
 import { deleteACategoryApi, getAllAdmCategory } from "../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import AdminQuizzesPage from "./quizzes/AdminQuizzesPage";
+
 
 
 const AdminCategoriesPage = () => {
@@ -70,10 +69,10 @@ const AdminCategoriesPage = () => {
     <Container fluid>
 
       <AdminHeader />
-      <Row className="mt-5">
+      <Row className="mt-1">
 
         <Col md={12}>
-          <h2 className="my-3 text-center mt-4 text-success">Categories</h2>
+          <h2 className="text-center mt-5 mb-5 text-danger">Categories</h2>
 
 
 
@@ -81,29 +80,29 @@ const AdminCategoriesPage = () => {
 
             adminCategory?.map((item) => (
 
-              
-                <ListGroup  className="my-2" >
-                  <ListGroup.Item
-                    className="d-flex justify-content-between align-items-center"
-  
-                  >
-                    <div>
-                      <div className="fw-bold">{item.title}</div>
-                      {item.description}
-                    </div>
-                    <div className="d-flex">
-  
 
-                      <Link to={`/adminQuizzes/${item._id}`} ><Button variant="success">More</Button></Link>
+              <ListGroup className="mt-2 mb-4 rounded shadow box " >
+                <ListGroup.Item
+                  className="d-flex justify-content-between align-items-center "
 
-                      <AdminUpdateCategoryPage category={item} />
-                    
-  
-                      <FontAwesomeIcon icon={faTrash} className='text-danger mx-3' onClick={() => deleteAdmCategory(item._id)} />
-                    </div>
-                  </ListGroup.Item>
-                </ListGroup>
-              
+                >
+                  <div>
+                    <h4 style={{ fontFamily: "Playfair Display" }} className="fw-bold text-primary ">{item.title}</h4>
+                    <h6 className="text-dark">{item.description}</h6>
+                  </div>
+                  <div className="d-flex">
+
+
+                    <Link to={`/adminQuizzes/${item._id}`} ><Button variant="success">More</Button></Link>
+
+                    <AdminUpdateCategoryPage category={item} />
+
+
+                    <FontAwesomeIcon icon={faTrash} className='text-danger mx-3' onClick={() => deleteAdmCategory(item._id)} />
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
+
             ))
 
             :

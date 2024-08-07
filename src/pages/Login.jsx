@@ -4,6 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginApi } from '../services/allAPI';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -75,10 +79,10 @@ function Login() {
     <Container>
       <Row className="justify-content-md-center mt-5">
         <Col md="6">
-          <h2 className="mb-4 text-center mt-5 p-1">Login</h2>
-          <Form className='p-5 rounded shadow' style={{backgroundColor:'rgba(82, 139, 141, 0.603)'}}>
+          <h2 className="mb-4 text-center mt-5 p-1">LOGIN</h2>
+          <Form className='p-5 rounded shadow' style={{ backgroundColor: 'rgba(82, 139, 141, 0.603)' }}>
             <Form.Group controlId="formUsername" className='mb-2'>
-              <Form.Label className='text-light fs-5'>Email</Form.Label>
+              <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faEnvelope} /> Email</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -88,7 +92,7 @@ function Login() {
               />
             </Form.Group>
             <Form.Group controlId="formPassword" className='mb-2'>
-              <Form.Label className='text-light fs-5'>Password</Form.Label>
+              <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faLock} /> Password</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
@@ -98,8 +102,8 @@ function Login() {
               />
             </Form.Group>
             <div className='d-flex justify-content-between mx-4 mt-3'>
-            <Button  variant="danger" type="submit">
-               <Link to={'/register'} className='text-light' style={{textDecoration:'none'}}> SignUp</Link>
+              <Button variant="danger" type="submit">
+                <Link to={'/register'} className='text-light' style={{ textDecoration: 'none' }}> SignUp</Link>
               </Button>
 
               <Button onClick={login} variant="primary" type="submit">

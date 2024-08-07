@@ -6,7 +6,8 @@ import AddQuizzes from "../../../components/AddQuizzes";
 import { Link, useParams } from "react-router-dom";
 import { getAllAdmCategory, getAllAdmQuiz } from "../../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
@@ -38,25 +39,25 @@ const AdminQuizzesPage = () => {
 
     }
 
-    
 
-  const getAllCategory = async () => {
 
-    if (sessionStorage.getItem("token")) {
-      const token = sessionStorage.getItem("token")
+    const getAllCategory = async () => {
 
-      const reqHeader = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
+        if (sessionStorage.getItem("token")) {
+            const token = sessionStorage.getItem("token")
 
-      const result = await getAllAdmCategory(reqHeader)
-      console.log(result.data);
-      setAdminCategory(result.data)
+            const reqHeader = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+
+            const result = await getAllAdmCategory(reqHeader)
+            console.log(result.data);
+            setAdminCategory(result.data)
+
+        }
 
     }
-
-  }
 
     useEffect(() => {
         getAllQuizzez(id)
@@ -67,7 +68,7 @@ const AdminQuizzesPage = () => {
     return (
         <Container fluid>
             <AdminHeader />
-            <Row className="mt-5">
+            <Row className="mb-3">
 
                 <Col md={12}>
 
@@ -77,27 +78,45 @@ const AdminQuizzesPage = () => {
                     {adminQuiz?.length > 0 ?
 
                         adminQuiz?.map((item) => (
-                            <ListGroup className="my-2">
-                                <ListGroup.Item className="d-flex flex-column flex-md-row align-items-start">
-                                    <div className="flex-grow-1">
-                                        <div className="fw-bold">{item.title}</div>
-                                        <p>{item.description}</p>
+                            <ListGroup className="mb-3 rounded shadow " >
+                                <ListGroup.Item className="border-0" >
+                                    <div className="row">
+                                        <div className="col-md-9 ">
+                                            <h4 className="fw-bold">{item.title}</h4>
+                                            <p>{item.description}</p>
+
+                                            <div className="row d-flex justify-content-evenly align-items-center">
+                                                <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{textDecoration:'none'}} >Questions</Link></Button>
+
+                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{textDecoration:'none'}}><FontAwesomeIcon icon={faTrophy} />  :  hsfruykhihuue</Link></Button>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-3  mt-1">
+
+                                            <div className="row ">
+
+
+                                                <Button variant="light" className="m-1 w-25">
+                                                    Marks: {item.maxMarks}
+                                                </Button>
+                                                <Button variant="light" className="m-1 w-25">
+                                                    Quest: {item.numberOfQuestions}
+                                                </Button>
+                                            </div>
+
+                                            <div className="row">
+                                                <button className="w-25 text-success border-0"><FontAwesomeIcon icon={faPen} /></button>
+
+                                                <button className="w-25 ms-3 border-0"><FontAwesomeIcon icon={faTrash} className='text-danger' /></button>
+
+                                            </div>
+
+
+
+
+                                        </div>
                                     </div>
-                                    <div className="d-flex flex-wrap">
 
-                                        <Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} ><Button variant="success">Questions</Button></Link>
-
-                                        <Button variant="light" className="m-1">
-                                            Marks: {item.maxMarks}
-                                        </Button>
-                                        <Button variant="light" className="m-1">
-                                            {item.numberOfQuestions} Questions
-                                        </Button>
-                                        <button>edit</button>
-
-
-                                        <FontAwesomeIcon icon={faTrash} className='text-danger mx-3' />
-                                    </div>
                                 </ListGroup.Item>
                             </ListGroup>
                         ))

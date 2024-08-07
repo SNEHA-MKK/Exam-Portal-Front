@@ -81,7 +81,7 @@ function AddQue({ id }) {
         <>
             <Button onClick={handleShow}
                 className="mb-4"
-                style={{ backgroundColor: "rgb(68 177 49)", color: "white" }}
+               variant='danger'
             >
                 Add Question
             </Button>
