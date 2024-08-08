@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Container, Button, Nav, Image } from "react-bootstrap";
 import { getAllUserQuiz } from "../../services/allAPI";
 import { Link } from "react-router-dom";
+import UserHeader from "../../components/UserHeader";
 
 const UserQuizzesPage = () => {
 
   const [userQuiz, setUserQuiz] = useState([])
-  
+
 
   const getAllUserQuizzez = async () => {
 
@@ -34,6 +35,7 @@ const UserQuizzesPage = () => {
 
   return (
     <Container fluid>
+      <UserHeader />
       <Row>
 
         <Col md={12}>
@@ -56,7 +58,7 @@ const UserQuizzesPage = () => {
                           <Button
                             variant="success"
                             className="m-1"
-  
+
                           >
                             Start
                           </Button>
@@ -90,7 +92,7 @@ const UserQuizzesPage = () => {
               }
 
 
-             
+
             </div>
 
 
