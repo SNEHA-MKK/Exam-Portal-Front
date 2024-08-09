@@ -26,6 +26,7 @@ function UserHeader() {
               <Nav.Link className='text-primary fw-bolder'><Link to={'/about'} style={{ textDecoration: "none" }}>ABOUT</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/profile'} style={{ textDecoration: "none" }} >PROFILE</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/quizzes'} style={{ textDecoration: "none" }}>QUIZZ</Link></Nav.Link>
+              <Nav.Link className='text-primary fw-bolder'><Link to={'/quizResults'} style={{ textDecoration: "none" }}>RESULTS</Link></Nav.Link>
               
             </Nav>
             <Nav className='ms-auto jusify-content-between'>

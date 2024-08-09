@@ -11,6 +11,11 @@ export const loginApi = async (reqbody) => {
      return await commonAPI('POST', `${serverUrl}/user/login`, reqbody, "")
 }
 
+//get user details - profile
+export const getUserProfile = async (reqHeader) => {
+     return await commonAPI('GET', `${serverUrl}/user-profile`, "", reqHeader)
+}
+
 //add admin profile
 export const addAdminProfileApi = async (reqbody, reqHeader) => {
      return await commonAPI('POST', `${serverUrl}/adminProfile`, reqbody, reqHeader)
@@ -94,3 +99,4 @@ export const getAdminResults = async (reqHeader) => {
 export const quizTopperApi = async (id, reqHeader) => {
      return await commonAPI('GET', `${serverUrl}/postQuiz-topper/${id}`, "", reqHeader)
 }
+

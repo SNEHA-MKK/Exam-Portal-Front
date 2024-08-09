@@ -6,10 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-
-
-
+import { faBook, faLock, faPhone, faUser } from '@fortawesome/free-solid-svg-icons';
 
 function Register() {
 
@@ -17,7 +14,9 @@ function Register() {
   const [user, setUser] = useState({
     username: "",
     email: "",
-    password: ""
+    password: "",
+    phone: "",
+    qualification: ""
   })
 
   // console.log(user);
@@ -28,8 +27,8 @@ function Register() {
   const register = async (e) => {
 
     e.preventDefault()
-    const { username, email, password } = user
-    if (!username || !email || !password) {
+    const { username, email, password, phone, qualification } = user
+    if (!username || !email || !password || !phone || !qualification) {
       toast.info('please fill the form completely')
     } else {
       const result = await registerAPI(user)
@@ -39,7 +38,9 @@ function Register() {
         setUser({
           username: "",
           email: "",
-          password: ""
+          password: "",
+          phone: "",
+          qualification: ""
         })
         navigate('/login')
       } else {
@@ -47,7 +48,9 @@ function Register() {
         setUser({
           username: "",
           email: "",
-          password: ""
+          password: "",
+          phone: "",
+          qualification: ""
         })
       }
     }
@@ -72,7 +75,7 @@ function Register() {
                   required
                 />
               </Form.Group>
-  
+
               <Form.Group controlId="formEmail" className='mb-2'>
                 <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faEnvelope} /> Email</Form.Label>
                 <Form.Control
@@ -83,7 +86,7 @@ function Register() {
                   required
                 />
               </Form.Group>
-  
+
               <Form.Group controlId="formPassword" className='mb-2'>
                 <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faLock} /> Password</Form.Label>
                 <Form.Control
@@ -94,8 +97,30 @@ function Register() {
                   required
                 />
               </Form.Group>
-  
-  
+
+              <Form.Group controlId="formPhone" className='mb-2'>
+                <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faPhone} />Phone</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="phone"
+                  value={user.phone}
+                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formQualification" className='mb-2'>
+                <Form.Label className='text-light fs-5'><FontAwesomeIcon icon={faBook} /> Qualiification</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="qualification"
+                  value={user.qualification}
+                  onChange={(e) => setUser({ ...user, qualification: e.target.value })}
+                  required
+                />
+              </Form.Group>
+
+
               <Button className='mt-3 w-100' onClick={register} variant="primary" type="submit">
                 Register
               </Button>
