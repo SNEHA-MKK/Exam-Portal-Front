@@ -100,3 +100,8 @@ export const quizTopperApi = async (id, reqHeader) => {
      return await commonAPI('GET', `${serverUrl}/postQuiz-topper/${id}`, "", reqHeader)
 }
 
+//get user Rank and Status
+export const rankAndStatusApi = async (id,reqHeader) => {
+     return await commonAPI('GET', `${serverUrl}/user-rank/${id}`, "", reqHeader)
+}
+

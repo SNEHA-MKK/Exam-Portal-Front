@@ -22,6 +22,8 @@ import UserQuestionsPage from './pages/users/UserQuestionsPage'
 import UserQuizResultPage from './pages/users/UserQuizResultPage'
 import ResultAdmin from './pages/admin/ResultAdmin'
 import TopperAdmin from './pages/admin/TopperAdmin'
+import UserLevelQuizzes from './pages/users/UserLevelQuizzes'
+
 
 function App() {
 
@@ -69,7 +71,7 @@ function App() {
         <Route path="/quizManual/" element={<UserQuizManualPage />} />
         <Route path="/questions/:id" element={<UserQuestionsPage />} />
         <Route path="/quizResults" element={<UserQuizResultPage />} />
-
+        <Route path="/userRank/:id" element={<UserLevelQuizzes/>} />
 
       </Routes>
 

@@ -45,7 +45,7 @@ const UserQuizzesPage = () => {
 
 
               {userQuiz.map((item) => (
-                <div className="col-md 4">
+                <div className="col-md-3 mb-5">
                   <Card bg="light" text="dark" className="h-100">
                     <Card.Body>
                       <Card.Title className="mb-3">Category : <span className="text-danger">{item.category}</span></Card.Title>
@@ -61,6 +61,16 @@ const UserQuizzesPage = () => {
 
                           >
                             Start
+                          </Button>
+                        </Link>
+
+                        <Link to={`/userRank/${item._id}`} >
+                          <Button
+                            variant="danger"
+                            className="m-1"
+
+                          >
+                            Rank
                           </Button>
                         </Link>
 
