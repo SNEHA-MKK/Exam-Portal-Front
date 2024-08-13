@@ -69,9 +69,9 @@ const AdminCategoriesPage = () => {
     <Container fluid>
 
       <AdminHeader />
-      <Row className="mt-1">
-
-        <Col md={12}>
+      <div className="row mt-1">
+        <div className="col-md-2"></div>
+        <div className="col-md-8">
           <h2 className="text-center mt-5 mb-5 text-danger">Categories</h2>
 
 
@@ -111,8 +111,10 @@ const AdminCategoriesPage = () => {
 
 
 
-        </Col>
-      </Row>
+
+        </div>
+        <div className="col-md-2"></div>
+      </div>
       <AddCat />
       <ToastContainer theme="colored" position="top-center" autoClose={2000} />
     </Container>
@@ -120,3 +122,5 @@ const AdminCategoriesPage = () => {
 };
 
 export default AdminCategoriesPage;
+
+

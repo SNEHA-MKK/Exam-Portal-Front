@@ -68,9 +68,10 @@ const AdminQuizzesPage = () => {
     return (
         <Container fluid>
             <AdminHeader />
-            <Row className="mb-3">
+            <div className="row mb-3">
+                <div className="col-md-2"></div>
+                <div className="col-md-8">
 
-                <Col md={12}>
 
 
                     <AddQuizzes adminCategory={adminCategory} id={id} />
@@ -78,7 +79,7 @@ const AdminQuizzesPage = () => {
                     {adminQuiz?.length > 0 ?
 
                         adminQuiz?.map((item) => (
-                            <ListGroup className="mb-3 rounded shadow " >
+                            <ListGroup className="mb-5 rounded shadow " >
                                 <ListGroup.Item className="border-0" >
                                     <div className="row">
                                         <div className="col-md-9 ">
@@ -86,9 +87,9 @@ const AdminQuizzesPage = () => {
                                             <p>{item.description}</p>
 
                                             <div className="row d-flex justify-content-evenly align-items-center">
-                                                <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{textDecoration:'none'}} >Questions</Link></Button>
+                                                <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{ textDecoration: 'none' }} >Questions</Link></Button>
 
-                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{textDecoration:'none'}}><FontAwesomeIcon icon={faTrophy} />  :  hsfruykhihuue</Link></Button>
+                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}><FontAwesomeIcon icon={faTrophy} /></Link></Button>
                                             </div>
                                         </div>
                                         <div className="col-md-3  mt-1">
@@ -124,10 +125,14 @@ const AdminQuizzesPage = () => {
                         :
                         <h2 className="text-danger text-center mt-5 mb-4">No quizzes are present. Try adding some quizzes.</h2>}
 
-                </Col>
-            </Row>
+
+                </div>
+                <div className="col-md-2"></div>
+            </div>
         </Container>
     );
 };
 
 export default AdminQuizzesPage;
+
+

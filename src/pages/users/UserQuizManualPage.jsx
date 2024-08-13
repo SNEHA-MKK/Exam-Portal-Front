@@ -1,32 +1,16 @@
 import React from 'react'
 import { Button, Container, Row, Col, Card, Nav, Image } from "react-bootstrap";
+import UserHeader from '../../components/UserHeader';
+import Footer from '../../components/Footer';
 
 function UserQuizManualPage() {
   return (
     <>
       <Container fluid>
+        
         <Row>
-          <Col md={2} className="d-none d-md-block position-sticky top-0 bg-dark text-light vh-100 d-flex flex-column align-items-center py-4">
-
-
-            <Image
-              src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
-              alt="Profile"
-              height="80px"
-              width="80px"
-              className="mb-2"
-              roundedCircle
-            />
-            <h3 className="text-light">WELCOME</h3>
-            <h6 className="text-light">Sneha Mohandas</h6>
-            <Nav className="flex-column w-100 mt-5">
-              <Nav.Link href="#" className="text-light text-center mb-3">Dashboard</Nav.Link>
-              <Nav.Link href="#" className="text-light text-center mb-3">Exams</Nav.Link>
-              <Nav.Link href="#" className="text-light text-center">Settings</Nav.Link>
-            </Nav>
-
-          </Col>
-          <Col md={10} className="mx-auto">
+       <UserHeader/>
+          <Col md={12} className="mx-auto">
 
             <Card className="my-4 p-4">
               <Card.Body>
@@ -86,7 +70,7 @@ function UserQuizManualPage() {
 
                     variant="primary"
                   >
-                    Start Quiz
+                    Start
                   </Button>
                 </div>
               </Card.Body>
@@ -94,6 +78,7 @@ function UserQuizManualPage() {
 
           </Col>
         </Row>
+        <Footer/>
       </Container>
     </>
   )

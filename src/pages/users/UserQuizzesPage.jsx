@@ -54,6 +54,17 @@ const UserQuizzesPage = () => {
                       </Card.Subtitle>
                       <Card.Text>{item.description}</Card.Text>
                       <div className="d-flex flex-wrap justify-content-around">
+
+                      <Link to={'/quizManual'} >
+                          <Button
+                            variant="info"
+                            className="m-1"
+
+                          >
+                            Rules
+                          </Button>
+                        </Link>
+
                         <Link to={`/questions/${item._id}`} >
                           <Button
                             variant="success"
@@ -73,6 +84,8 @@ const UserQuizzesPage = () => {
                             Rank
                           </Button>
                         </Link>
+
+                        
 
                         <Button
                           variant="outline-secondary"

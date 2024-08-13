@@ -68,7 +68,7 @@ function App() {
 
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/quizzes" element={<UserQuizzesPage />} />
-        <Route path="/quizManual/" element={<UserQuizManualPage />} />
+        <Route path="/quizManual" element={<UserQuizManualPage />} />
         <Route path="/questions/:id" element={<UserQuestionsPage />} />
         <Route path="/quizResults" element={<UserQuizResultPage />} />
         <Route path="/userRank/:id" element={<UserLevelQuizzes/>} />
