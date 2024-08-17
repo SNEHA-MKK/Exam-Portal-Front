@@ -69,8 +69,10 @@ export const getAllAdmQuestion = async (id, reqHeader) => {
 }
 
 //get all quizzes - user
-export const getAllUserQuiz = async (reqHeader) => {
-     return await commonAPI('GET', `${serverUrl}/user-getquiz`, "", reqHeader)
+export const getAllUserQuiz = async (searchKey,reqHeader) => {
+
+     //query parameter = path?key = value
+     return await commonAPI('GET', `${serverUrl}/user-getquiz?search=${searchKey}`, "", reqHeader)
 }
 
 

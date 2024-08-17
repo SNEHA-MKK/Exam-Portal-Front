@@ -3,10 +3,16 @@ import { Card, Col, Row, Container, Button, Nav, Image } from "react-bootstrap";
 import { getAllUserQuiz } from "../../services/allAPI";
 import { Link } from "react-router-dom";
 import UserHeader from "../../components/UserHeader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 const UserQuizzesPage = () => {
 
   const [userQuiz, setUserQuiz] = useState([])
+  const [searchKey, setSearchKey] = useState("")
+
+  console.log(searchKey);
 
 
   const getAllUserQuizzez = async () => {
@@ -19,7 +25,7 @@ const UserQuizzesPage = () => {
         "Authorization": `Bearer ${token}`
       }
 
-      const result = await getAllUserQuiz(reqHeader)
+      const result = await getAllUserQuiz(searchKey, reqHeader)
       console.log(result.data);
       setUserQuiz(result.data)
 
@@ -29,7 +35,7 @@ const UserQuizzesPage = () => {
 
   useEffect(() => {
     getAllUserQuizzez()
-  }, [])
+  }, [searchKey])
 
 
 
@@ -41,7 +47,17 @@ const UserQuizzesPage = () => {
         <Col md={12}>
           <Container className="text-center mt-3">
 
-            <div className="row mt-5">
+            <div className="row mt-5 d-flex justify-content-center w-100">
+              <div className="col-md-4"></div>
+              <div className="col-md-4 d-flex justify-content-center p-4">
+                <input type="text" className="form-control" placeholder="Search By Quiz Name" onChange={(e) => setSearchKey(e.target.value)} />
+                <FontAwesomeIcon style={{ 'marginTop': '10px' }} icon={faMagnifyingGlass} className='text-secondary' />
+              </div>
+              <div className="col-md-4"></div>
+            </div>
+
+            { userQuiz?.length > 0 ?
+              <div className="row mt-5">
 
 
               {userQuiz.map((item) => (
@@ -55,9 +71,9 @@ const UserQuizzesPage = () => {
                       <Card.Text>{item.description}</Card.Text>
                       <div className="d-flex flex-wrap justify-content-around">
 
-                      <Link to={'/quizManual'} >
+                        <Link to={'/quizManual'} >
                           <Button
-                            variant="info"
+                            variant="outline-primary"
                             className="m-1"
 
                           >
@@ -67,7 +83,7 @@ const UserQuizzesPage = () => {
 
                         <Link to={`/questions/${item._id}`} >
                           <Button
-                            variant="success"
+                            variant="outline-success"
                             className="m-1"
 
                           >
@@ -77,7 +93,7 @@ const UserQuizzesPage = () => {
 
                         <Link to={`/userRank/${item._id}`} >
                           <Button
-                            variant="danger"
+                            variant="outline-danger"
                             className="m-1"
 
                           >
@@ -85,7 +101,7 @@ const UserQuizzesPage = () => {
                           </Button>
                         </Link>
 
-                        
+
 
                         <Button
                           variant="outline-secondary"
@@ -117,8 +133,10 @@ const UserQuizzesPage = () => {
 
 
             </div>
-
-
+              :
+            <div className="mt-5">
+              <h1>No Quiz to display</h1>
+            </div>}
 
           </Container>
         </Col>

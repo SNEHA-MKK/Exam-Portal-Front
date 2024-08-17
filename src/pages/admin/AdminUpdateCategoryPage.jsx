@@ -56,7 +56,7 @@ const AdminUpdateCategoryPage = ({ category }) => {
           setShow(false);
           toast.success('Category updated successfully');
         } else {
-          console.log(result);
+          console.log(result); 
           toast.error('Something went wrong');
         }
       }

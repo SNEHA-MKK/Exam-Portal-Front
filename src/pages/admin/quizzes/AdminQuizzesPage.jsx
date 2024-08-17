@@ -89,7 +89,7 @@ const AdminQuizzesPage = () => {
                                             <div className="row d-flex justify-content-evenly align-items-center">
                                                 <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{ textDecoration: 'none' }} >Questions</Link></Button>
 
-                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}><FontAwesomeIcon icon={faTrophy} /></Link></Button>
+                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}>Winner <FontAwesomeIcon icon={faTrophy} /></Link></Button>
                                             </div>
                                         </div>
                                         <div className="col-md-3  mt-1">

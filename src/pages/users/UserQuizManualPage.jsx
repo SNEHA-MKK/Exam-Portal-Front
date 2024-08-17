@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Container, Row, Col, Card, Nav, Image } from "react-bootstrap";
 import UserHeader from '../../components/UserHeader';
 import Footer from '../../components/Footer';
+import { Link } from 'react-router-dom';
 
 function UserQuizManualPage() {
   return (
@@ -65,13 +66,15 @@ function UserQuizManualPage() {
                   </li>
                 </ul>
                 <div className="text-center">
-                  <Button
-                    className="my-3"
-
-                    variant="primary"
-                  >
-                    Start
-                  </Button>
+                 <Link to={'/quizzes'}>
+                    <Button
+                      className="my-3"
+  
+                      variant="primary"
+                    >
+                    Back
+                    </Button>
+                 </Link>
                 </div>
               </Card.Body>
             </Card>

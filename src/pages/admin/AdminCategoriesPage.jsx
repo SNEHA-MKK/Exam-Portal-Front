@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, ListGroup, Container, Row, Col, Nav, Image, Form } from "react-bootstrap";
 import AdminUpdateCategoryPage from "./AdminUpdateCategoryPage";
@@ -9,13 +9,14 @@ import AddCat from "../../components/AddCat";
 import { deleteACategoryApi, getAllAdmCategory } from "../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { AddCategoryResponseStatusContext } from "../../context/Context";
 
 
 
 const AdminCategoriesPage = () => {
 
   const [adminCategory, setAdminCategory] = useState([])
-
+  const {AddResponse} = useContext(AddCategoryResponseStatusContext)
 
   const getAllCategory = async () => {
 
@@ -49,18 +50,18 @@ const AdminCategoriesPage = () => {
       console.log(result);
 
       if (result.status == 200) {
-        getAllUserProject()
+        getAllCategory()
       } else {
         alert('Something went wrong')
       }
-
+ 
     }
 
   }
 
   useEffect(() => {
     getAllCategory()
-  }, [])
+  }, [AddResponse])
 
   // const { id } = useParams();
 
