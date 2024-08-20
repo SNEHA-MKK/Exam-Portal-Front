@@ -9,7 +9,7 @@ import AddCat from "../../components/AddCat";
 import { deleteACategoryApi, getAllAdmCategory } from "../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { AddCategoryResponseStatusContext } from "../../context/Context";
+import { AddCategoryResponseStatusContext, EditCategoryContext } from "../../context/Context";
 
 
 
@@ -17,6 +17,7 @@ const AdminCategoriesPage = () => {
 
   const [adminCategory, setAdminCategory] = useState([])
   const {AddResponse} = useContext(AddCategoryResponseStatusContext)
+  const {EditResponse} = useContext(EditCategoryContext)
 
   const getAllCategory = async () => {
 
@@ -61,7 +62,7 @@ const AdminCategoriesPage = () => {
 
   useEffect(() => {
     getAllCategory()
-  }, [AddResponse])
+  }, [AddResponse,EditResponse])
 
   // const { id } = useParams();
 

@@ -1,15 +1,18 @@
 
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import FormContainer from '../../components/FormContainer';
 import { updateCategoryApi } from "../../services/allAPI";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { EditCategoryContext } from "../../context/Context";
 
 const AdminUpdateCategoryPage = ({ category }) => {
+
+  const {setEditResponse} = useContext(EditCategoryContext)
   const [show, setShow] = useState(false);
   const [update, setUpdate] = useState({
     title: category.title,
@@ -54,6 +57,7 @@ const AdminUpdateCategoryPage = ({ category }) => {
 
         if (result.status === 200) {
           setShow(false);
+          setEditResponse(result.data)
           toast.success('Category updated successfully');
         } else {
           console.log(result); 

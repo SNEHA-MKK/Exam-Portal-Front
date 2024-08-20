@@ -107,3 +107,8 @@ export const rankAndStatusApi = async (id,reqHeader) => {
      return await commonAPI('GET', `${serverUrl}/user-rank/${id}`, "", reqHeader)
 }
 
+//update profile-user
+
+export const updateProfile = async(reqbody,reqHeader)=>{
+     return await commonAPI('PUT',`${serverUrl}/update-profile`,reqbody,reqHeader)
+ }
