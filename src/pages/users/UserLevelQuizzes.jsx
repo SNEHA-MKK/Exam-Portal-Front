@@ -175,12 +175,13 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import UserHeader from '../../components/UserHeader';
 import Footer from '../../components/Footer';
 import { useParams } from 'react-router-dom';
 import { rankAndStatusApi } from '../../services/allAPI';
 import Confetti from 'react-confetti'; // Import Confetti component
+import jsPDF from 'jspdf';
 
 function UserLevelQuizzes() {
     const [rank, setRank] = useState(null);
@@ -204,9 +205,29 @@ function UserLevelQuizzes() {
         }
     };
 
+    console.log(rank);
+    
     useEffect(() => {
         fetchUserRanks(id);
     }, [id]);
+
+    const downloadPDF = () => {
+        const doc = new jsPDF();
+        doc.setFontSize(20);
+        doc.text("Quiz Results", 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Category: ${rank.category}`, 20, 40);
+        doc.text(`Quiz: ${rank.quizId}`, 20, 50);
+        doc.text(`Score: ${rank.score}`, 20, 60);
+        doc.text(`Out Of: ${rank.total}`, 20, 70);
+
+        if (rank.score < rank.total - 2) {
+            doc.text(`Better luck next time!`, 20, 90);
+        }
+
+        doc.save("quiz_results.pdf");
+
+    };
 
     if (!rank) {
         return (
@@ -234,7 +255,7 @@ function UserLevelQuizzes() {
                 <UserHeader />
 
                 <div style={{ backgroundImage: "url('https://e0.pxfuel.com/wallpapers/448/62/desktop-wallpaper-graduation-clipart-graduation-graduation-cap.jpg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
-                    {rank.rank === 1 && <Confetti />} {/* Display confetti if the rank is 1 */}
+                    {rank.score == rank.total && <Confetti />} {/* Display confetti if the rank is 1 */}
 
                     <Row>
                         <Col>
@@ -245,14 +266,16 @@ function UserLevelQuizzes() {
                         <Col md={4} className="my-2">
                             <Card className="text-center p-3 shadow rounded">
                                 <Card.Body>
-                                    <Card.Title>Rank: <span className='text-danger'>{rank.rank}</span></Card.Title>
+                                    {/* <Card.Title>Rank: <span className='text-danger'>{rank.rank}</span></Card.Title> */}
                                     <Card.Title>Category: <span className='text-danger'>{rank.category}</span></Card.Title>
                                     <Card.Title>Quiz: <span className='text-danger'>{rank.quizId}</span></Card.Title>
                                     <Card.Title>Score: <span className='text-danger'>{rank.score}</span></Card.Title>
                                     <Card.Title>Out Of: <span className='text-danger'>{rank.total}</span></Card.Title>
-                                    {rank.rank > 3 && (
+                                    {rank.score < rank.total-2 && (
                                         <Card.Title className="mt-3 text-success">Better luck next time!</Card.Title>
                                     )}
+
+                                    <button onClick={downloadPDF} className='bg-danger rounded p-1 text-light border-0'>Download</button>
                                 </Card.Body>
                             </Card>
                         </Col>

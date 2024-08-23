@@ -97,7 +97,7 @@ const UserQuizzesPage = () => {
                             className="m-1"
 
                           >
-                            Rank
+                            Result
                           </Button>
                         </Link>
 
@@ -107,7 +107,7 @@ const UserQuizzesPage = () => {
                           variant="outline-secondary"
                           className="m-1"
                         >
-                          20 Minutes
+                          5 Minutes
                         </Button>
 
                         <Button
