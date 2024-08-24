@@ -186,6 +186,7 @@ import jsPDF from 'jspdf';
 function UserLevelQuizzes() {
     const [rank, setRank] = useState(null);
     const { id } = useParams();
+    const [user,setUser] = useState({})
 
     const fetchUserRanks = async (id) => {
         const token = sessionStorage.getItem('token');
@@ -206,9 +207,13 @@ function UserLevelQuizzes() {
     };
 
     console.log(rank);
-    
+
+   
+     console.log(user);
+     
     useEffect(() => {
         fetchUserRanks(id);
+        setUser(JSON.parse(sessionStorage.getItem('existingUser')))
     }, [id]);
 
     const downloadPDF = () => {
@@ -216,13 +221,19 @@ function UserLevelQuizzes() {
         doc.setFontSize(20);
         doc.text("Quiz Results", 20, 20);
         doc.setFontSize(12);
-        doc.text(`Category: ${rank.category}`, 20, 40);
-        doc.text(`Quiz: ${rank.quizId}`, 20, 50);
-        doc.text(`Score: ${rank.score}`, 20, 60);
-        doc.text(`Out Of: ${rank.total}`, 20, 70);
+        doc.text(`Name: ${user.username
+        }`, 20, 40);
+        doc.text(`MailId: ${user.mailId
+        }`, 20, 50);
+        doc.text(`qualification: ${user.qualification
+        }`, 20, 60);
+        doc.text(`Category: ${rank.category}`, 20, 70);
+        doc.text(`Quiz: ${rank.quizId}`, 20, 80);
+        doc.text(`Score: ${rank.score}`, 20, 90);
+        doc.text(`Out Of: ${rank.total}`, 20, 100);
 
         if (rank.score < rank.total - 2) {
-            doc.text(`Better luck next time!`, 20, 90);
+            doc.text(`Better luck next time!`, 20, 110);
         }
 
         doc.save("quiz_results.pdf");
@@ -271,7 +282,7 @@ function UserLevelQuizzes() {
                                     <Card.Title>Quiz: <span className='text-danger'>{rank.quizId}</span></Card.Title>
                                     <Card.Title>Score: <span className='text-danger'>{rank.score}</span></Card.Title>
                                     <Card.Title>Out Of: <span className='text-danger'>{rank.total}</span></Card.Title>
-                                    {rank.score < rank.total-2 && (
+                                    {rank.score < rank.total - 2 && (
                                         <Card.Title className="mt-3 text-success">Better luck next time!</Card.Title>
                                     )}
 

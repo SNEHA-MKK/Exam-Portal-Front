@@ -23,32 +23,32 @@ function UserQuizManualPage() {
                 </Card.Text>
                 <hr />
                 <Card.Title as="h3" className="text-center">
-                  mhvhgmjbj
+                  <h1 className='text-danger'>RULES</h1>
                 </Card.Title>
-                <Card.Text>lorem jhjhgj hbhjbj etsr fygy ljkn rdtdy uhjkn dxffch uhujhj</Card.Text>
+                {/* <Card.Text>lorem jhjhgj hbhjbj etsr fygy ljkn rdtdy uhjkn dxffch uhujhj</Card.Text> */}
                 <hr />
                 <Card.Title as="h3">Important Instructions</Card.Title>
                 <ul>
                   <li>This quiz is only for practice purpose.</li>
                   <li>
-                    You have to submit quiz within <strong>20 minutes</strong>.
+                    You have to submit quiz within <strong>5 minutes</strong>.
                   </li>
-                  <li>You can attempt the quiz any number of times.</li>
-                  <li>
+                  <li>You can only attempt the quiz one time.</li>
+                  {/* <li>
                     There are <strong>10 questions</strong>{" "}
                     in this quiz.
-                  </li>
+                  </li> */}
                   <li>This quiz is only for practice purpose.</li>
-                  <li>
+                  {/* <li>
                     Total Marks for this quiz is <strong>100</strong>.
-                  </li>
+                  </li> */}
                   <li>All questions are of MCQ type.</li>
                 </ul>
                 <hr />
                 <Card.Title as="h3">Attempting Quiz</Card.Title>
                 <ul>
                   <li>
-                    Click <strong>Start Quiz</strong> button to start the quiz.
+                    Click Start Quiz button to start the quiz.
                   </li>
                   <li>
                     The timer will start the moment you click on the Start Quiz
@@ -62,7 +62,7 @@ function UserQuizManualPage() {
                     the quiz.
                   </li>
                   <li>
-                    Result of the test is generated automatically in PDF format.
+                    Result of the test is generated automatically in PDF format and can download the result
                   </li>
                 </ul>
                 <div className="text-center">
@@ -70,7 +70,7 @@ function UserQuizManualPage() {
                     <Button
                       className="my-3"
   
-                      variant="primary"
+                      variant="danger"
                     >
                     Back
                     </Button>
