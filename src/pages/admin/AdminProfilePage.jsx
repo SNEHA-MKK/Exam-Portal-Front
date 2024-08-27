@@ -8,8 +8,8 @@ import { useState } from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addAdminProfileApi, getAdminProfileApi } from '../../services/allAPI';
-import { serverUrl } from '../../services/baseUrl';
+// import { addAdminProfileApi, getAdminProfileApi } from '../../services/allAPI';
+// import { serverUrl } from '../../services/baseUrl';
 
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
@@ -18,103 +18,113 @@ import { Link } from 'react-router-dom';
 
 function AdminProfilePage() {
 
-  const [preview, setPreview] = useState("")
+  // const [preview, setPreview] = useState("")
   //state to hold the admin details
-  const [adminDetails, setAdminDetails] = useState({
-    profileImage: "",
-    phnNo: "",
-    Role: ""
+  // const [adminDetails, setAdminDetails] = useState({
+  //   profileImage: "",
+  //   phnNo: "",
+  //   Role: ""
 
-  })
-  console.log(adminDetails);
+  // })
+  // console.log(adminDetails);
   const [token, setToken] = useState("")
+  const [adminUser, setAdminUser] = useState({})
+
+  console.log(adminUser);
+
 
   // const [key,setKey] = useState(false)
 
   //state to hold the get admin profile data 
-  const [adProfile, setAdProfile] = useState({})
+  // const [adProfile, setAdProfile] = useState({})
 
-  const handleUpload = async (e) => {
-    e.preventDefault()
+  // const handleUpload = async (e) => {
+  //   e.preventDefault()
 
-    const { profileImage, phnNo, Role } = adminDetails
-    if (!profileImage || !phnNo || !Role) {
-      toast.info('Please fill the form completely')
-    } else {
+  //   const { profileImage, phnNo, Role } = adminDetails
+  //   if (!profileImage || !phnNo || !Role) {
+  //     toast.info('Please fill the form completely')
+  //   } else {
 
-      //handle uploaded contents
-      const reqBody = new FormData()
-      //to add data
-      reqBody.append("profileImage", profileImage)
-      reqBody.append("phnNo", phnNo)
-      reqBody.append("Role", Role)
+  //     //handle uploaded contents
+  //     const reqBody = new FormData()
+  //     //to add data
+  //     reqBody.append("profileImage", profileImage)
+  //     reqBody.append("phnNo", phnNo)
+  //     reqBody.append("Role", Role)
 
-      if (token) {
+  //     if (token) {
 
-        let reqHeader = {
-          "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`
-        }
+  //       let reqHeader = {
+  //         "Content-Type": "multipart/form-data",
+  //         "Authorization": `Bearer ${token}`
+  //       }
 
-        const result = await addAdminProfileApi(reqBody, reqHeader)
-        // console.log(result);
+  //       const result = await addAdminProfileApi(reqBody, reqHeader)
+  //       // console.log(result);
 
-        if (result.status == 200) {
-          setAdminDetails({
-            profileImage: "",
-            phnNo: "",
-            Role: ""
-          })
+  //       if (result.status == 200) {
+  //         setAdminDetails({
+  //           profileImage: "",
+  //           phnNo: "",
+  //           Role: ""
+  //         })
 
-        } else {
-          toast.error('something went wrong')
-          setAdminDetails({
-            profileImage: "",
-            phnNo: "",
-            Role: ""
-          })
-        }
+  //       } else {
+  //         toast.error('something went wrong')
+  //         setAdminDetails({
+  //           profileImage: "",
+  //           phnNo: "",
+  //           Role: ""
+  //         })
+  //       }
 
-      }
+  //     }
 
-      getAdminProfile()
-    }
-
-
-  }
+  //     getAdminProfile()
+  //   }
 
 
+  // }
+
+
+
+  // useEffect(() => {
+  //   //file converted to url
+  //   if (adminDetails.profileImage) {
+  //     setPreview(URL.createObjectURL(adminDetails.profileImage))
+  //   }
+
+  // }, [adminDetails.profileImage])
+  // console.log(preview);
 
   useEffect(() => {
-    //file converted to url
-    if (adminDetails.profileImage) {
-      setPreview(URL.createObjectURL(adminDetails.profileImage))
-    }
 
-  }, [adminDetails.profileImage])
-  console.log(preview);
-
-  useEffect(() => {
     if (sessionStorage.getItem("token")) {
       setToken(sessionStorage.getItem("token"))
     } else {
       setToken("")
     }
 
+    if (sessionStorage.getItem("adminUser")) {
+      setAdminUser(JSON.parse(sessionStorage.getItem("adminUser")))
+    } else {
+      setAdminUser({})
+    }
     // to get admin profile when page loads
 
   }, [])
   console.log(token);
 
-  const getAdminProfile = async () => {
-    const result = await getAdminProfileApi()
-    console.log(result);
-    const data = result.data[length]
-    console.log(data);
-    setAdProfile(result.data[length])
-  }
+  // const getAdminProfile = async () => {
+  //   const result = await getAdminProfileApi()
+  //   console.log(result);
+  //   const data = result.data[length]
+  //   console.log(data);
+  //   setAdProfile(result.data[length])
+  // }
 
-  console.log(adProfile);
+  // console.log(adProfile);
 
 
   return (
@@ -123,9 +133,9 @@ function AdminProfilePage() {
       <Navbar expand="lg" className="bg-white navbar  mb-5 " fixed="top">
         <Container className='justify-content-between align-items-center'>
           <Navbar.Brand className='fw-bolder text-info'>
-            <Link to={'/dashboard'} style={{ textDecoration: 'none' }}>
-              <img className='me-2 rounded' src={`${serverUrl}/uploads/${adProfile.profileImage}` ? `${serverUrl}/uploads/${adProfile.profileImage}` : "https://www.shutterstock.com/image-photo/beautiful-pink-flower-anemones-fresh-260nw-1028135845.jpg"} width={'50px'} height={'50px'} alt="" />
-              Exam PORTAL
+            <Link to={'/'} style={{ textDecoration: 'none' }}>
+              <img src="https://images.softwaresuggest.com/software_logo/1495539705_followclass-192.png" width={'50px'} height={'50px'} alt="" className='me-3' />
+              EXAM PORTAL
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -154,15 +164,16 @@ function AdminProfilePage() {
 
           <div id="example-collapse-text" className='mt-4 w-100 d-flex justify-content-center align-items-center flex-column'>
             <div className='mb-3 w-100 text-center'>
-              <label htmlFor="image">
+              {/* <label htmlFor="image"> */}
                 {/* key={key} - key attribute in input tag */}
-                <input onChange={(e) => setAdminDetails({ ...adminDetails, profileImage: e.target.files[0] })} id='image' type="file" style={{ display: 'none' }} />
-                <img src={preview ? preview : "https://cdn-icons-png.flaticon.com/512/8101/8101718.png"} alt="" width={'200px'} height={'200px'} style={{ borderRadius: '100px' }} />
+                {/* <input onChange={(e) => setAdminDetails({ ...adminDetails, profileImage: e.target.files[0] })} id='image' type="file" style={{ display: 'none' }} /> */}
+                <img src="https://cdn-icons-png.flaticon.com/512/8101/8101718.png" alt="" width={'200px'} height={'200px'} style={{ borderRadius: '100px' }} />
+                {/* <img src={preview ? preview : "https://cdn-icons-png.flaticon.com/512/8101/8101718.png"} alt="" width={'200px'} height={'200px'} style={{ borderRadius: '100px' }} /> */}
 
 
-              </label>
+              {/* </label> */}
             </div>
-            <div className='mb-3 w-100'>
+            {/* <div className='mb-3 w-100'>
               <input onChange={(e) => setAdminDetails({ ...adminDetails, phnNo: e.target.value })} type="text" placeholder='Phone Number' className='form-control w-100' />
             </div>
 
@@ -171,7 +182,7 @@ function AdminProfilePage() {
             </div>
             <div className='mb-3 w-100'>
               <button onClick={handleUpload} type='button' className='btn btn-success w-100'>Upload</button>
-            </div>
+            </div> */}
 
           </div>
 
@@ -183,24 +194,21 @@ function AdminProfilePage() {
             <tbody>
               <tr>
                 <td>Name</td>
-                <td>jhghj</td>
+                <td>{adminUser.name}</td>
               </tr>
               <tr>
-                <td>Username</td>
-                <td>nhghj</td>
+                <td>Email Id</td>
+                <td>{adminUser.email}</td>
               </tr>
               <tr>
                 <td>Phone</td>
-                <td>{adProfile.phnNo}</td>
+                <td>{adminUser.phone}</td>
               </tr>
               <tr>
                 <td>Role</td>
-                <td>{adProfile.Role}</td>
+                <td>{adminUser.role}</td>
               </tr>
-              <tr>
-                <td>Status</td>
-                <td>fdff</td>
-              </tr>
+
             </tbody>
           </Table>
         </div>

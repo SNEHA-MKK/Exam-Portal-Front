@@ -12,9 +12,9 @@ export const loginApi = async (reqbody) => {
 }
 
 //get user details - profile
-export const getUserProfile = async (reqHeader) => {
-     return await commonAPI('GET', `${serverUrl}/user-profile`, "", reqHeader)
-}
+// export const getUserProfile = async (reqHeader) => {
+//      return await commonAPI('GET', `${serverUrl}/user-profile`, "", reqHeader)
+// }
 
 //add admin profile
 export const addAdminProfileApi = async (reqbody, reqHeader) => {

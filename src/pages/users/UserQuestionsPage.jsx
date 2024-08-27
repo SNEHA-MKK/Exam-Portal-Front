@@ -376,50 +376,57 @@ function UserQuestionsPage() {
     return (
         <>
             <Container fluid>
-                <Row className="justify-content-between">
-                    <Col md={4} className="my-2">
-                        <Card className="text-center p-3">
-                            <h4 className="mt-3">{formatTime(timeLeft)}</h4>
-                            Timer
-                        </Card>
-                    </Col>
-                </Row>
+                { userQuestion?.length > 0?
+                    <div>
+                        <Row className="justify-content-between">
+                        <Col md={4} className="my-2">
+                            <Card className="text-center p-3">
+                                <h4 className="mt-3">{formatTime(timeLeft)}</h4>
+                                Timer
+                            </Card>
+                        </Col>
+                    </Row>
+    
+                    <Row>
+                        <Col md={12}>
+                            {userQuestion.map((item, index) => (
+                                <Row key={index} className="mb-2">
+                                    <Col xs={12} className="mb-2">
+                                        <h5>{item.question}</h5>
+                                    </Col>
+                                    <Col xs={12}>
+                                        <InputGroup>
+                                            <Row className="w-100">
+                                                {['option1', 'option2', 'option3', 'option4'].map((option, index) => (
+                                                    <Col key={index} xs={12} md={6} className="d-flex mb-2">
+                                                        <InputGroup.Radio
+                                                            name={`question-${item._id}`}
+                                                            value={item[option]}
+                                                            onChange={() => handleAnswerChange(item._id, item[option])}
+                                                            aria-label={`option ${index + 1}`}
+                                                        />
+                                                        <span className="ms-2">{item[option]}</span>
+                                                    </Col>
+                                                ))}
+                                            </Row>
+                                        </InputGroup>
+                                    </Col>
+                                    <hr />
+                                </Row>
+                            ))}
+                        </Col>
+                    </Row>
+    
+                    <div className="my-3 d-flex justify-content-center align-items-center">
+                        <Button className="w-100" variant="primary" onClick={handleSubmit}>
+                            Submit Quiz
+                        </Button>
+                    </div>
+                    </div>
+                :
+                <h1 className='text-danger text-center mt-5 p-5'>Currently Exam Not Available For this Quiz</h1>
+                }
 
-                <Row>
-                    <Col md={12}>
-                        {userQuestion.map((item, index) => (
-                            <Row key={index} className="mb-2">
-                                <Col xs={12} className="mb-2">
-                                    <h5>{item.question}</h5>
-                                </Col>
-                                <Col xs={12}>
-                                    <InputGroup>
-                                        <Row className="w-100">
-                                            {['option1', 'option2', 'option3', 'option4'].map((option, index) => (
-                                                <Col key={index} xs={12} md={6} className="d-flex mb-2">
-                                                    <InputGroup.Radio
-                                                        name={`question-${item._id}`}
-                                                        value={item[option]}
-                                                        onChange={() => handleAnswerChange(item._id, item[option])}
-                                                        aria-label={`option ${index + 1}`}
-                                                    />
-                                                    <span className="ms-2">{item[option]}</span>
-                                                </Col>
-                                            ))}
-                                        </Row>
-                                    </InputGroup>
-                                </Col>
-                                <hr />
-                            </Row>
-                        ))}
-                    </Col>
-                </Row>
-
-                <div className="my-3 d-flex justify-content-center align-items-center">
-                    <Button className="w-100" variant="primary" onClick={handleSubmit}>
-                        Submit Quiz
-                    </Button>
-                </div>
 
                 <ToastContainer theme="colored" autoClose={2000} position="top-center" />
             </Container>
